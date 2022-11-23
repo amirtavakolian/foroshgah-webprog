@@ -13,10 +13,10 @@
 
     <div class="col-xl-12 col-md-12 mb-4 p-md-5 bg-white">
         <div class="d-flex justify-content-between mb-4">
-            <h5 class="font-weight-bold">لیست برند ها ({{ $brands->count() }})</h5>
-            <a class="btn btn-sm btn-outline-primary" href="{{ route('brand.create') }}">
+            <h5 class="font-weight-bold">لیست ویژگی ها ({{ $attributes->count() }})</h5>
+            <a class="btn btn-sm btn-outline-primary" href="{{ route('attribute.create') }}">
                 <i class="fa fa-plus"></i>
-                ایجاد برند
+                ایجاد ویژگی
             </a>
         </div>
 
@@ -27,21 +27,17 @@
                     <tr>
                         <th>#</th>
                         <th>نام</th>
-                        <th>وضعیت</th>
                         <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($brands as $key => $brand)
+                    @foreach ($attributes as $key => $brand)
                     <tr>
                         <th>
                             {{ $loop->index+1 }}
                         </th>
                         <th>
                             {{ $brand->name }}
-                        </th>
-                        <th>
-                            {!! $brand->status !!}
                         </th>
                         <th>
                             <a class="btn btn-sm btn-success mr-3" href="{{ route('brand.edit', ['brand' => $brand->id]) }}">ویرایش</a>
@@ -62,27 +58,23 @@
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
     table.addEventListener('click', function(event) {
+        event.preventDefault();
 
         if (event.target.hasAttribute('data-itemID')) {
+            if (confirm('آیا مطمئن هستید؟')) {
 
-            event.preventDefault();
+                let route = "{{ route('brand.destroy',['brand'=>':id']) }}";
+                route = route.replace(':id', event.target.getAttribute('data-itemID'));
 
-            if (event.target.hasAttribute('data-itemID')) {
-                if (confirm('آیا مطمئن هستید؟')) {
+                const xhr = new XMLHttpRequest();
+                xhr.open('DELETE', route);
+                xhr.setRequestHeader('X-CSRF-TOKEN', token);
 
-                    let route = "{{ route('brand.destroy',['brand'=>':id']) }}";
-                    route = route.replace(':id', event.target.getAttribute('data-itemID'));
+                xhr.send();
 
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('DELETE', route);
-                    xhr.setRequestHeader('X-CSRF-TOKEN', token);
-
-                    xhr.send();
-
-                    xhr.addEventListener("load", function(xhrEvent) {
-                        event.target.parentElement.parentElement.remove();
-                    });
-                }
+                xhr.addEventListener("load", function(xhrEvent) {
+                    event.target.parentElement.parentElement.remove();
+                });
             }
         }
 

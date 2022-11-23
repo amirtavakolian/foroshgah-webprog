@@ -25,7 +25,7 @@ require('./panel/demo/chart-area-demo');
 require('./panel/demo/chart-bar-demo');
 require('./panel/demo/chart-pie-demo');
 require('./panel/demo/datatables-demo');
-
+require('../../public/js/panel/bootstrap-select.min.js');
 
 
 

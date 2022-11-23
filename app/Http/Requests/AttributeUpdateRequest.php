@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BrandRequest extends FormRequest
+class AttributeUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class BrandRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,9 +24,7 @@ class BrandRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"=>"required|min:3",
-            "slug"=>"required|unique:brands,slug",
-            "is_active"=>"in:1,0"
+            //
         ];
     }
 }

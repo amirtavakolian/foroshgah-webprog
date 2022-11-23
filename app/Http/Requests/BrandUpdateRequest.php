@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BrandRequest extends FormRequest
+class BrandUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +26,7 @@ class BrandRequest extends FormRequest
     {
         return [
             "name"=>"required|min:3",
-            "slug"=>"required|unique:brands,slug",
+            "slug"=>["required", Rule::unique('brands','slug')->ignore($this->brand), 'alpha_dash'],
             "is_active"=>"in:1,0"
         ];
     }

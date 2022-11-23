@@ -7,9 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Webprog.ir - Dashboard</title>
+    @yield('head')
+    <title>amir-amoozesh.ir - Dashboard</title>
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/panel/app.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/panel/bootstrap-select.min.css')}}">
+
+
 </head>
