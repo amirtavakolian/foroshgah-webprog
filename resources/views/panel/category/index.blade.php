@@ -53,8 +53,8 @@
                             </span>
                         </th>
                         <th>
+                            <a class="btn btn-sm btn-info mr-3" href="{{route('category.edit', ['category'=>$category->id])}}">ویرایش</a>
                             <a class="btn btn-sm btn-danger" href="#">حذف</a>
-                            <a class="btn btn-sm btn-info mr-3" href="#">ویرایش</a>
                         </th>
                     </tr>
                     @endforeach

@@ -14,5 +14,4 @@
     <link href="{{asset('css/panel/app.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/panel/bootstrap-select.min.css')}}">
 
-
 </head>

@@ -11,6 +11,7 @@
         "php": "^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "hekmatinasser/verta": "^8.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
@@ -29,10 +30,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Tavakolian\\User\\": "Modules/Tavakolian/User",
-            "Tavakolian\\Dashboard\\": "Modules/Tavakolian/Dashboard",
-            "Tavakolian\\Category\\": "Modules/Tavakolian/Category",
-            "Tavakolian\\RolePermission\\": "Modules/Tavakolian/RolePermission"
+            "Services\\Uploader\\": "Services/Uploader"
         }
     },
     "autoload-dev": {
