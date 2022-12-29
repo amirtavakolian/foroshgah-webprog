@@ -9,9 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "darryldecode/cart": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
+        "ghasedak/laravel": "^2.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "hekmatinasser/verta": "^8.1",
+        "laravel/fortify": "^1.14",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
@@ -31,7 +34,10 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Services\\Uploader\\": "Services/Uploader"
-        }
+        },
+        "files":[
+            "app/helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

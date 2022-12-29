@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use Exception;
 use Carbon\Carbon;
+use App\Models\Comment;
 use App\Models\Panel\Tag;
 use App\Models\Panel\Brand;
 use Illuminate\Http\Request;
@@ -14,7 +15,6 @@ use Services\Uploader\Uploader;
 use App\Models\Panel\ProductImage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
 use App\Models\Panel\ProductVariation;
 
 class ProductController extends Controller
@@ -172,6 +172,13 @@ class ProductController extends Controller
         }
     }
 
+    public function show(Product $product)
+    {
+        $categories = Category::all();
+        $comments = Comment::where('product_id', $product->id);
+        return view('index.product', compact('product', 'categories', 'comments'));
+    }
+
     public function categoryAttributes(Category $category)
     {
         return $category;
@@ -188,11 +195,13 @@ class ProductController extends Controller
         if ($variation->date_on_sale_from < Carbon::now() && $variation->date_on_sale_to >= Carbon::now()) {
             return [
                 "price" => $variation->price,
-                "sale_price" => $variation->sale_price
+                "sale_price" => $variation->sale_price,
+                "id"=>$variation->id
             ];
         }
         return [
-            "price" => $variation->price
+            "price" => $variation->price,
+            "id"=>$variation->id
         ];
     }
 }

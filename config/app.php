@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Darryldecode\Cart\CartServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -176,7 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
+        App\Providers\FortifyServiceProvider::class
 
     ],
 
@@ -232,8 +233,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class
-
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
 
     ],
 
