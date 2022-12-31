@@ -7,5 +7,4 @@
         @include('index.sections.mobile')
         @yield('content')
         @include('index.sections.footer')
-        @yield('script')
 

@@ -31,10 +31,10 @@ class CartController extends Controller
         }
 
         $product = Product::findOrFail($request->product_id);
-        // $variations = $product->variations->where('id', $request->variationID)->first();
         $variation = ProductVariation::findOrFail($request->variationID);
+        // $variations = $product->variations->where('id', $request->variationID)->first();
 
-        if ($variation->quantity < $request->qtybutton) {
+        if (checkQuantity($variation->quantity, $request->qtybutton)){
             alert()->alert('عدم موجودی', "موجودی محصول انتخابی فقط $variation->quantity عدد میباشد");
             return redirect()->back();
         }
@@ -57,11 +57,34 @@ class CartController extends Controller
 
         alert()->error('این محصول قبلا به سبد خرید اضافه شده');
         return redirect()->back();
+    }
 
-        /*
-        variationID
-        qtybutton
-        product_id
-        */
+    public function update($cart, Request $request)
+    {
+        foreach($request->qtybutton as $key=>$value){
+            if(checkQuantity((\Cart::getContent()[$key])->attributes->quantity, $value)){
+                alert()->alert('عدم موجودی', "موجودی محصول انتخابی فقط".(\Cart::getContent()[$key])->attributes->quantity . " عدد میباشد");
+                return redirect()->back();
+            }
+        }
+
+        foreach($request->qtybutton as $key=>$value){
+            \Cart::update($key, array(
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $value
+                ),
+              ));
+        }
+        alert()->success('محصول با موفقیت بروز رسانی شد.');
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        \Cart::remove($id);
+        alert()->success('', "محصول مورد نظر با موفقیت حذف شذ");
+        return redirect()->back();
     }
 }
+

@@ -12,6 +12,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/panel/app.css')}}" rel="stylesheet">
+    @yield('css')
+
     <link rel="stylesheet" href="{{asset('css/panel/bootstrap-select.min.css')}}">
 
 </head>

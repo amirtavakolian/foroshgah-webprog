@@ -7,7 +7,9 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
 
-                    <form action="#">
+                    <form action="{{ route('cart.update', ['cart' => '1']) }}" method="POST">
+                        @method('PUT')
+                        @csrf
                         <div class="table-content table-responsive cart-table-content">
                             <table>
                                 <thead>
@@ -42,18 +44,26 @@
                                                         {{ number_format($product->attributes->price) . ' تومان' }}
                                                     @endif
                                                 </span></td>
+
                                             <td class="product-quantity">
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton"
+                                                    <input class="cart-plus-minus-box" type="text"
+                                                        name="qtybutton[{{ $product->id }}]"
                                                         value="{{ $product->quantity }}">
                                                 </div>
                                             </td>
                                             {{--   <td class="product-subtotal">
                                                 40000
                                                 تومان
-                                            </td> --}}
+                                            </td>
                                             <td class="product-remove">
-                                                <a href="#"><i class="sli sli-close"></i></a>
+                                                <a href="#"><i class="sli sli-close"
+                                                        data-product-id="{{ $product->id }}"></i></a>
+                                            </td>
+                                            --}}
+                                            <td class="product-remove">
+                                                <a href="#"><i class="sli sli-close"
+                                                        data-product-id="{{ $product->id }}"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -84,8 +94,9 @@
                                 </div>
                                 <div class="discount-code">
                                     <p> لورم ایپسوم متن ساختگی با تولید سادگی </p>
-                                    <form>
-                                        <input type="text" required="" name="name">
+                                    <form method="POST" action="{{ route('coupen.calculate') }}">
+                                        @csrf
+                                        <input type="text" name="name">
                                         <button class="cart-btn-2" type="submit"> ثبت </button>
                                     </form>
                                 </div>
@@ -108,7 +119,7 @@
                                     <h5>
                                         هزینه ارسال :
                                         <span>
-                                            {{ getDeliveryPrice() . " تومان" }}
+                                            {{ getDeliveryPrice() . ' تومان' }}
                                         </span>
                                     </h5>
 
@@ -140,4 +151,39 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        const tbody = document.querySelector('tbody');
+        tbody.addEventListener('click', tbodyClick);
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+
+        function tbodyClick(event) {
+            if (event.target.hasAttribute('data-product-id')) {
+                let target = event.target;
+                event.preventDefault();
+
+                let productID = event.target.getAttribute('data-product-id');
+                let route = "{{ route('cart.destroy', ['cart' => ':cart']) }}";
+                route = route.replace(':cart', productID);
+
+                if (confirm('آیا مطمئن هستید؟')) {
+                    const xhr = ajaxRequest(route);
+                    xhr.addEventListener("load", function(event) {
+                        target.parentElement.parentElement.parentElement.remove();
+                        location.reload();
+                    })
+                }
+            }
+        }
+
+        function ajaxRequest(route) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('DELETE', route);
+            xhr.setRequestHeader('X-CSRF-TOKEN', token);
+            xhr.send();
+            return xhr;
+        }
+    </script>
 @endsection

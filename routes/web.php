@@ -1,11 +1,10 @@
 <?php
 
-use App\Models\Comment;
-use Ghasedak\Laravel\GhasedakFacade;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductCategory;
+use App\Http\Controllers\CoupenController;
 use App\Http\Controllers\OTP\OTPController;
 use App\Http\Controllers\Panel\BrandController;
 use App\Http\Controllers\Panel\BannerController;
@@ -14,16 +13,13 @@ use App\Http\Controllers\Panel\ProductController;
 use App\Http\Controllers\Panel\CategoryController;
 use App\Http\Controllers\Panel\AttributeController;
 
-use function PHPUnit\Framework\isEmpty;
 
 Route::get("/panel", function () {
     return view('panel.index');
 });
 
 Route::get("/test", function () {
-    foreach(\Cart::getContent() as $product){
-        dump($product->attributes->date_on_sale_from);
-    }
+    dd();
 });
 
 
@@ -52,6 +48,9 @@ Route::group(['prefix' => 'panel'], function () {
     Route::post("product/{product}/getProduct", [ProductController::class, 'getProduct'])->name('product.getProduct');
     Route::post("product/{productvariation}/getProductVariations", [ProductController::class, 'getProductVariations'])->name('product.getProductVariations');
 
+    // Coupen Routes:
+    Route::resource("coupen", CoupenController::class);
+    Route::post('/coupen/calculate', [CoupenController::class, 'calculateCoupen'])->name('coupen.calculate');
 });
 
 Route::get("/products/category/{category:slug}", [ProductCategory::class, 'show'])->name('productsCategory.attributes');

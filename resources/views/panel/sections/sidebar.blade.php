@@ -22,12 +22,13 @@
 <hr class="sidebar-divider">
 
 <!-- Heading -->
-<div class="sidebar-heading">
+<!-- <div class="sidebar-heading">
     لورم ایپسوم
 </div>
+ -->
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
         <span> کامپونت ها </span>
@@ -40,9 +41,10 @@
         </div>
     </div>
 </li>
+ -->
 
 <!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
         <span> ابزار ها </span>
@@ -57,14 +59,16 @@
         </div>
     </div>
 </li>
+ -->
 
 <!-- Divider -->
-<hr class="sidebar-divider">
+<!-- <hr class="sidebar-divider"> -->
 
 <!-- Heading -->
-<div class="sidebar-heading">
+<!-- <div class="sidebar-heading">
     لورم
 </div>
+ -->
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
@@ -74,31 +78,30 @@
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header"> صفحات ورود : </h6>
-            <a class="collapse-item" href="login.html"> ورود </a>
-            <a class="collapse-item" href="register.html"> عضویت </a>
-            <a class="collapse-item" href="forgot-password.html"> فراموشی رمز عبور </a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header"> صفحات دیگر : </h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="#">Blank Page</a>
+            <h6 class="collapse-header">لینک ها</h6>
+            <a class="collapse-item" href="{{ route('attribute.index') }}">ویژگی ها</a>
+            <a class="collapse-item" href="{{ route('brand.index') }}">برندها</a>
+            <a class="collapse-item" href="{{ route('category.index') }}">دسته بندی ها</a>
+            <a class="collapse-item" href="{{ route('comment.index') }}">کامنت ها</a>
+            <a class="collapse-item" href="{{ route('banner.index') }}">بنرها</a>
+            <a class="collapse-item" href="{{ route('product.index') }}">محصولات</a>
         </div>
     </div>
 </li>
 
 <!-- Nav Item - Charts -->
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link" href="#">
         <i class="fas fa-fw fa-chart-area"></i>
         <span> نمودار ها </span></a>
-</li>
+</li> -->
 
 <!-- Nav Item - Tables -->
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link" href="#">
         <i class="fas fa-fw fa-table"></i>
         <span> جداول </span></a>
-</li>
+</li> -->
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">

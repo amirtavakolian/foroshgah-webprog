@@ -8,10 +8,10 @@ const mix = require('laravel-mix');
     'resources/js/index/ajax-mail.js',
     'resources/js/index/main.js',
     'resources/js/index/modernizr-2.8.3.min.js',
+    'resources/js/persian-date.min.js',
+    'resources/js/persian-datepicker.min.js'
+], 'public/js/all1.js'); */
 
-], 'public/js/index/all.js');
-
- */
 /* mix.js('resources/js/app.js', 'public/js/index'); */
 
 
@@ -20,5 +20,6 @@ mix.scripts([
     'resources/css/index/icons.min.css',
     'resources/css/index/plugins.css',
     'resources/css/index/style.css'
-], 'public/css/index/all.css');
+
+], 'public/css/all1.css');
 
